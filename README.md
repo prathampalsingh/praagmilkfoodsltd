@@ -12,4 +12,5 @@ database showing description of products and customer.
 
 ![cows_prod_cus](https://github.com/user-attachments/assets/38fda3ec-de34-4609-8007-b4e4df4f761b)
 
-could not complete the code due to error from jakarta(not recognizing @valid) some dependency error the rest of the code is working or atleast not giving any errors 
+While developing the code, I encountered an issue related to dependency conflicts. Specifically, the framework was unable to recognize the @Valid annotation, likely due to a mismatch between the javax and jakarta packages.I understand that this was caused by a recent migration from javax to jakarta, and I am confident that reinstalling the dependencies with the correct jakarta versions will resolve this issue.
+The remaining parts of the code are functioning as expected or at least not producing any errors. I am committed to resolving this dependency issue before the next interview.
