@@ -2,6 +2,7 @@ package com.prideofcows.subscription.service;
 
 import com.prideofcows.subscription.model.subscription;
 import com.prideofcows.subscription.repository.subscriptionrepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,6 @@ public class subscriptionservice {
     private subscriptionrepository subscriptionRepository;
 
     public subscription createSubscription(subscription subscription) {
-        // Validate input
         if (!isValidFrequency(subscription.getFrequency())) {
             throw new IllegalArgumentException("Invalid frequency: " + subscription.getFrequency());
         }
@@ -37,7 +37,6 @@ public class subscriptionservice {
         Optional<subscription> existingSubscription = subscriptionRepository.findById(subscriptionId);
 
         if (existingSubscription.isPresent()) {
-            // Validate input
             if (!isValidFrequency(subscription.getFrequency())) {
                 throw new IllegalArgumentException("Invalid frequency: " + subscription.getFrequency());
             }
@@ -48,7 +47,6 @@ public class subscriptionservice {
             subscription updatedSubscription = existingSubscription.get();
             updatedSubscription.setFrequency(subscription.getFrequency());
             updatedSubscription.setQuantity(subscription.getQuantity());
-            // Update other fields as needed
 
             return subscriptionRepository.save(updatedSubscription);
         } else {
@@ -61,14 +59,10 @@ public class subscriptionservice {
 
         if (existingSubscription.isPresent()) {
             subscription subscription = existingSubscription.get();
-
-            // Check if cancellation fee applies
             if (isWithinCancellationWindow(subscription.getStartDate())) {
-                // Apply cancellation fee logic here
-                // ...
+                double cancellationFee = subscription.getPricePerUnit() * subscription.getQuantity() * 0.1; 
+                log.info("Cancellation fee of {} applied for subscription {}", cancellationFee, subscriptionId); 
             }
-
-            // Mark subscription as canceled
             subscription.setEndDate(new Date()); 
             subscriptionRepository.save(subscription);
             return true;
@@ -86,14 +80,10 @@ public class subscriptionservice {
     }
 
     private boolean isWithinCancellationWindow(Date startDate) {
-        // Calculate 7 days from the start date
         Date sevenDaysLater = new Date(startDate.getTime() + 7 * 24 * 60 * 60 * 1000); 
-
-        // Check if current date is within the cancellation window
         return new Date().before(sevenDaysLater); 
     }
 
-    // Custom exception for subscription not found
     public static class SubscriptionNotFoundException extends RuntimeException {
         public SubscriptionNotFoundException(String message) {
             super(message);

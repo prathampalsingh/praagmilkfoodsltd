@@ -22,7 +22,7 @@ public class subscription {
     private String productName;
 
     @Column(nullable = false)
-    private String frequency; // "daily" or "weekly"
+    private String frequency;
 
     @Column(nullable = false)
     private Integer quantity;
@@ -37,7 +37,6 @@ public class subscription {
     private Date endDate;
 
     public void setEndDate(java.util.Date date) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setEndDate'");
     }
 
@@ -108,7 +107,5 @@ public class subscription {
     public Date getEndDate() {
         return endDate;
     }
-    
-    // Getters and Setters
 
 }
