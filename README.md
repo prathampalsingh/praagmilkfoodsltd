@@ -1,5 +1,6 @@
 # praagmilkfoodsltd
  Assignment: Pride of Cows - Subscription Management System
+ assignment question google docs
  https://docs.google.com/document/d/1AdR4Pq84crMWDO_dGP2JMQxVGTvPnBgikBkgyaFktsQ/edit?tab=t.0#heading=h.azwi4qdgfufj
 
 
