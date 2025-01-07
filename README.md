@@ -12,4 +12,4 @@ database showing description of products and customer.
 
 ![cows_prod_cus](https://github.com/user-attachments/assets/38fda3ec-de34-4609-8007-b4e4df4f761b)
 
-
+could not complete the code due to error from jakarta(not recognizing @valid) some dependency error the rest of the code is working or atleast not giving any errors 
