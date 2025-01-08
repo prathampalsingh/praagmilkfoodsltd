@@ -31,10 +31,10 @@ public class subscription {
     private Double pricePerUnit;
 
     @Column(nullable = false)
-    private Date startDate;
+    private Date start_date;
 
     @Column(nullable = false)
-    private Date endDate;
+    private Date end_date;
 
     public void setEndDate(java.util.Date date) {
         throw new UnsupportedOperationException("Unimplemented method 'setEndDate'");
@@ -97,15 +97,15 @@ public class subscription {
     }
 
     public Date getStartDate() {
-        return startDate;
+        return start_date;
     }
 
     public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+        this.start_date = start_date;
     }
 
     public Date getEndDate() {
-        return endDate;
+        return end_date;
     }
 
 }

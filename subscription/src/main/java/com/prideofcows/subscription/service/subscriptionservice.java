@@ -2,7 +2,11 @@ package com.prideofcows.subscription.service;
 
 import com.prideofcows.subscription.model.subscription;
 import com.prideofcows.subscription.repository.subscriptionrepository;
+// For Logback
 
+import jakarta.persistence.EntityNotFoundException;
+
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +20,14 @@ public class subscriptionservice {
     @Autowired
     private subscriptionrepository subscriptionRepository;
 
-    public subscription createSubscription(subscription subscription) {
+    public subscription createSubscription(subscription subscription) throws BadRequestException {
+        try {
+            // Convert start_date string to java.sql.Date
+            subscription.setStartDate(java.sql.Date.valueOf(subscription.getStartDate().toString()));
+        } catch (IllegalArgumentException e) {
+            throw new BadRequestException("Invalid start date format. Please use YYYY-MM-DD format.");
+        }
+    
         if (!isValidFrequency(subscription.getFrequency())) {
             throw new IllegalArgumentException("Invalid frequency: " + subscription.getFrequency());
         }
@@ -29,7 +40,6 @@ public class subscriptionservice {
         if (subscription.getEndDate().before(subscription.getStartDate())) {
             throw new IllegalArgumentException("End date must be after start date");
         }
-
         return subscriptionRepository.save(subscription);
     }
 
@@ -54,22 +64,16 @@ public class subscriptionservice {
         }
     }
 
-    public boolean cancelSubscription(Long subscriptionId) {
-        Optional<subscription> existingSubscription = subscriptionRepository.findById(subscriptionId);
+    public void cancelSubscription(Long subscriptionId) {
+        subscription subscription = subscriptionRepository.findById(subscriptionId)
+                .orElseThrow(() -> new EntityNotFoundException("Subscription not found"));
 
-        if (existingSubscription.isPresent()) {
-            subscription subscription = existingSubscription.get();
-            if (isWithinCancellationWindow(subscription.getStartDate())) {
-                double cancellationFee = subscription.getPricePerUnit() * subscription.getQuantity() * 0.1; 
-                log.info("Cancellation fee of {} applied for subscription {}", cancellationFee, subscriptionId); 
-            }
-            subscription.setEndDate(new Date()); 
-            subscriptionRepository.save(subscription);
-            return true;
-        } else {
-            throw new SubscriptionNotFoundException("Subscription not found");
-        }
+        // Validate cancellation and apply cancellation fee if applicable
+        // ...
+
+        subscriptionRepository.delete(subscription);
     }
+
 
     public List<subscription> getSubscriptionsByCustomerId(Long customerId) {
         return subscriptionRepository.findAllByCustomerId(customerId); 

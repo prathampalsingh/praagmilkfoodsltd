@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import jakarta.*;
+import jakarta.validation.*;
 import java.util.List;
 
 @RestController
@@ -14,26 +14,41 @@ import java.util.List;
 public class subscriptioncontroller {
 
     @Autowired
-    private subscriptionservice subscriptionService;
+    private subscriptionservice subscriptionservice;
 
     @PostMapping
-    public ResponseEntity<String> createSubscription(@Valid @RequestBody subscription subscription) {
-        // ...
+    public ResponseEntity<String> createSubscription(@RequestBody subscription subscription) {
+        try {
+            subscriptionservice.createSubscription(subscription);
+            return ResponseEntity.ok("Subscription created successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PutMapping("/{subscriptionId}")
     public ResponseEntity<String> modifySubscription(@PathVariable Long subscriptionId,
-                                                    @RequestBody subscription subscription) {
-        // ...
+                                                    @RequestBody subscription updatedSubscription) {
+        try {
+            subscriptionservice.modifySubscription(subscriptionId, updatedSubscription);
+            return ResponseEntity.ok("Subscription updated successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{subscriptionId}")
     public ResponseEntity<String> cancelSubscription(@PathVariable Long subscriptionId) {
-        // ...
+        try {
+            subscriptionservice.cancelSubscription(subscriptionId);
+            return ResponseEntity.ok("Subscription canceled successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/{customerId}")
     public ResponseEntity<List<subscription>> getSubscriptionsByCustomerId(@PathVariable Long customerId) {
-        // ...
+        return ResponseEntity.ok(subscriptionservice.getSubscriptionsByCustomerId(customerId));
     }
 }
