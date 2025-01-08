@@ -14,5 +14,12 @@ database showing description of products and customer.
 
 ![cows_prod_cus](https://github.com/user-attachments/assets/38fda3ec-de34-4609-8007-b4e4df4f761b)
 
-While developing the code, I encountered an issue related to dependency conflicts. Specifically, the framework was unable to recognize the @Valid annotation, likely due to a mismatch between the javax and jakarta packages.I understand that this was caused by a recent migration from javax to jakarta, and I am confident that reinstalling the dependencies with the correct jakarta versions will resolve this issue.
-The remaining parts of the code are functioning as expected or at least not producing any errors. I am committed to resolving this dependency issue before the next interview.
+jakarta error fixed!!!!
+spring is running..
+
+![spring_running](https://github.com/user-attachments/assets/982b0b42-b1b3-4871-991b-d65186310628)
+
+
+spring startup!
+
+![spring_startup](https://github.com/user-attachments/assets/2e37f0ed-4266-4df1-aca0-a1ad0f3cb294)
