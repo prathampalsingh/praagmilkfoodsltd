@@ -107,5 +107,5 @@ public class subscription {
     public Date getEndDate() {
         return end_date;
     }
-
+    
 }
