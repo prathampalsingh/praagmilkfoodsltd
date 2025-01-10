@@ -21,25 +21,34 @@ public class subscriptionservice {
     private subscriptionrepository subscriptionRepository;
 
     public subscription createSubscription(subscription subscription) throws BadRequestException {
-        try {
-            // Convert start_date string to java.sql.Date
-            subscription.setStartDate(java.sql.Date.valueOf(subscription.getStartDate().toString()));
-        } catch (IllegalArgumentException e) {
-            throw new BadRequestException("Invalid start date format. Please use YYYY-MM-DD format.");
-        }
+        // try {
+        //     // Inspect start_date before conversion (for debugging)
+        //     System.out.println("Start date before conversion: " + subscription.getStartDate());
     
+        //     // Parse the startDate string to java.sql.Date using java.sql.Date.valueOf()
+        //     subscription.setStartDate(subscription.getStartDate()); // Assuming getStartDate() returns a java.sql.Date
+        //     System.out.println("Start date after conversion: " + subscription.getStartDate());
+        // } catch (IllegalArgumentException e) {
+        //     throw new BadRequestException("Invalid start date format. Please use YYYY-MM-DD format.");
+        // }
+        if (subscription.getProductId() == 201) { // Example condition
+            subscription.setCustomerId(null); // This line should be removed or corrected
+        }
+        System.out.println("Received subscription: " + subscription); 
+        System.out.println("Customer ID in subscription: " + subscription.getCustomerId()); 
+
         if (!isValidFrequency(subscription.getFrequency())) {
             throw new IllegalArgumentException("Invalid frequency: " + subscription.getFrequency());
         }
         if (subscription.getQuantity() <= 0) {
             throw new IllegalArgumentException("Quantity must be greater than 0");
         }
-        if (subscription.getStartDate().before(new Date())) {
-            throw new IllegalArgumentException("Start date must be in the future");
-        }
-        if (subscription.getEndDate().before(subscription.getStartDate())) {
-            throw new IllegalArgumentException("End date must be after start date");
-        }
+        // if (subscription.getStartDate().before(new Date())) {
+        //     throw new IllegalArgumentException("Start date must be in the future");
+        // }
+        // if (subscription.getEndDate().before(subscription.getStartDate())) {
+        //     throw new IllegalArgumentException("End date must be after start date");
+        // }
         return subscriptionRepository.save(subscription);
     }
 

@@ -28,7 +28,7 @@ public class subscription {
     private Integer quantity;
 
     @Column(nullable = false)
-    private Double pricePerUnit;
+    private Double price_per_unit;
 
     @Column(nullable = false)
     private Date start_date;
@@ -88,12 +88,12 @@ public class subscription {
         this.quantity = quantity;
     }
 
-    public Double getPricePerUnit() {
-        return pricePerUnit;
+    public Double getprice_per_unit() {
+        return price_per_unit;
     }
 
-    public void setPricePerUnit(Double pricePerUnit) {
-        this.pricePerUnit = pricePerUnit;
+    public void setprice_per_unit(Double price_per_unit) {
+        this.price_per_unit = price_per_unit;
     }
 
     public Date getStartDate() {

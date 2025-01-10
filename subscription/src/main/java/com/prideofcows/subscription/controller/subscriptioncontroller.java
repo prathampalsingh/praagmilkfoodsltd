@@ -17,7 +17,7 @@ public class subscriptioncontroller {
     private subscriptionservice subscriptionservice;
 
     @PostMapping
-    public ResponseEntity<String> createSubscription(@RequestBody subscription subscription) {
+    public ResponseEntity<String> createSubscription(@Valid @RequestBody subscription subscription) {
         try {
             subscriptionservice.createSubscription(subscription);
             return ResponseEntity.ok("Subscription created successfully.");
@@ -47,8 +47,12 @@ public class subscriptioncontroller {
         }
     }
 
-    @GetMapping("/{customerId}")
-    public ResponseEntity<List<subscription>> getSubscriptionsByCustomerId(@PathVariable Long customerId) {
-        return ResponseEntity.ok(subscriptionservice.getSubscriptionsByCustomerId(customerId));
+    @GetMapping("getid/{customerId}")
+public ResponseEntity<List<subscription>> getSubscriptionsByCustomerId(@PathVariable Long customerId) {
+    if (customerId == null) {
+        // Handle null customer ID case (e.g., return bad request)
+        return ResponseEntity.badRequest().build();
     }
+    return ResponseEntity.ok(subscriptionservice.getSubscriptionsByCustomerId(customerId));
+}
 }
