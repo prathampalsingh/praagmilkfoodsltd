@@ -1,8 +1,23 @@
-# praagmilkfoodsltd
+# Praag Milk Foods Ltd - Pride of Cows
  Assignment: Pride of Cows - Subscription Management System
  
  Assignment question google docs-https://docs.google.com/document/d/1AdR4Pq84crMWDO_dGP2JMQxVGTvPnBgikBkgyaFktsQ/edit?tab=t.0#heading=h.azwi4qdgfufj
 
+Key Features:
+
+Subscription Management: Customers can easily subscribe to various milk delivery plans, manage their subscriptions, and track upcoming deliveries.
+Inventory Management: Tracks milk production and ensures efficient inventory management for timely deliveries.
+
+Technical Stack:
+
+Jakarta EE (Previously known as Java EE) - Robust and scalable enterprise platform.
+Spring Framework - Simplifies application development and configuration.
+Relational Database Management System (RDBMS) - Stores and manages subscription data, product details, and customer information.
+
+Project Status:
+
+Jakarta EE errors successfully resolved!
+Spring framework is up and running!
 
  ![paragmilkfoods](https://github.com/user-attachments/assets/09972462-f6bb-4352-9885-075394530409)
 
