@@ -7,24 +7,19 @@
  Assignment question google docs-https://docs.google.com/document/d/1AdR4Pq84crMWDO_dGP2JMQxVGTvPnBgikBkgyaFktsQ/edit?tab=t.0#heading=h.azwi4qdgfufj
 
 Key Features:
-
 Subscription Management: Customers can easily subscribe to various milk delivery plans, manage their subscriptions, and track upcoming deliveries.
 Inventory Management: Tracks milk production and ensures efficient inventory management for timely deliveries.
 
 Technical Stack:
-
 Jakarta EE (Previously known as Java EE) - Robust and scalable enterprise platform.
 Spring Framework - Simplifies application development and configuration.
 Relational Database Management System (RDBMS) - Stores and manages subscription data, product details, and customer information.
 
 Project Status:
-
 Jakarta EE errors successfully resolved!
-
 Spring framework is up and running!
 
 Images:
-
 database showing all the tables present and description of subscription table.
 
 ![database_cows_desc](https://github.com/user-attachments/assets/8b5517d7-599f-44e2-a55c-3cc9efb654cc)
