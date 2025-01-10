@@ -20,7 +20,10 @@ Relational Database Management System (RDBMS) - Stores and manages subscription 
 Project Status:
 
 Jakarta EE errors successfully resolved!
+
 Spring framework is up and running!
+
+Images:
 
 database showing all the tables present and description of subscription table.
 
